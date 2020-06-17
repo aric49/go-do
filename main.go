@@ -61,8 +61,13 @@ func (tl TodoTasks) rmTask(taskID int) {
 
 func main() {
 
-	//TODO: make this configurable
-	var mainTodoList todofile = "/home/aric/todo.txt"
+	//Put together the main todo file location
+	home, err := os.UserHomeDir()
+	if err != nil {
+		fmt.Println("Home directory not defined" + home)
+	}
+	concatTodo := string(home + "/" + "todo.txt")
+	var mainTodoList todofile = todofile(concatTodo)
 	
 	checkTodoFile(mainTodoList)
 
